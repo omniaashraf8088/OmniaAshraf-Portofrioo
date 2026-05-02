@@ -1,0 +1,67 @@
+name: portfolio_flutter
+description: A professional portfolio Flutter application with theme and language switching
+publish_to: 'none'
+version: 1.0.0+1
+
+environment:
+  sdk: '>=3.0.0 <4.0.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+  # State Management
+  provider: ^6.1.1
+
+  # Icons
+  font_awesome_flutter: ^10.6.0
+
+  # URL Launcher (for opening links)
+  url_launcher: ^6.2.2
+
+  # Animations
+  animated_text_kit: ^4.2.2
+
+  # Responsive
+  flutter_screenutil: ^5.9.0
+
+  # HTTP requests (if needed for contact form)
+  http: ^1.1.2
+
+  # Smooth page indicator
+  smooth_page_indicator: ^1.1.0
+
+  # Image picker (optional - for profile image)
+  # image_picker: ^1.0.5
+  # Shared preferences (for saving theme/language preference)
+  shared_preferences: ^2.2.2
+  intl: ^0.20.2
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^3.0.0
+
+flutter:
+  uses-material-design: true
+
+  assets:
+    - assets/images/
+    - assets/icons/
+
+  fonts:
+    - family: Almarai
+      fonts:
+        - asset: assets/fonts/Almarai/Almarai-Regular.ttf
+          weight: 400
+    - family: PlayfairDisplay
+      fonts:
+        - asset: assets/fonts/Playfair_Display/static/PlayfairDisplay-Regular.ttf
+        - asset: assets/fonts/Playfair_Display/static/PlayfairDisplay-Bold.ttf
+          weight: 700
+        - asset: assets/fonts/Playfair_Display/static/PlayfairDisplay-Italic.ttf
+          style: italic
+       
+   
+flutter_intl:
+  enabled: true

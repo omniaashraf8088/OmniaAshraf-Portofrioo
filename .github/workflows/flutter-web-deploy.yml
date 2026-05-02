@@ -1,0 +1,24 @@
+name: Flutter Web Build & Deploy
+
+on:
+  push:
+    branches:
+      - main  # كل ما تعملي push على main هيشتغل
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+      - uses: subosito/flutter-action@v2
+        with:
+          flutter-version: '3.27.2' # Updated to support newer Flutter APIs like Color.withValues
+      - run: flutter pub get
+      - run: flutter build web --release --base-href "/OmniaAshraf-Portofrioo/"
+
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: build/web

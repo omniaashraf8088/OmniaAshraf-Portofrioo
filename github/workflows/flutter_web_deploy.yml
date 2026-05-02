@@ -1,0 +1,33 @@
+name: Flutter Web Deploy
+
+on:
+  push:
+    branches:
+      - main  # الفرع اللي هتعملي عليه push
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      # 1. Checkout code
+      - uses: actions/checkout@v3
+
+      # 2. تثبيت Flutter
+      - uses: subosito/flutter-action@v2
+        with:
+          flutter-version: '3.13.0'  # عدلي حسب نسخة Flutter عندك
+
+      # 3. Install dependencies
+      - run: flutter pub get
+
+      # 4. Build Web
+      - run: flutter build web --release
+
+      # 5. Deploy to GitHub Pages
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_branch: gh-pages   # هينشر على فرع gh-pages
+          publish_dir: build/web
