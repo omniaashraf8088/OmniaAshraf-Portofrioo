@@ -242,7 +242,8 @@ class PortfolioData {
           date: DateTime(2024, 11, 1),
           readTime: "8 min read",
           readTimeAr: "8 دقائق قراءة",
-          url: "https://medium.com/@omnia52481019",
+          url:
+              "https://medium.com/@omnia52481019/building-scalable-flutter-apps-architecture-best-practices-89e43d66059d",
         ),
         BlogPostModel(
           id: 2,
