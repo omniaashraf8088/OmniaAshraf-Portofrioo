@@ -42,21 +42,26 @@ class CertificatesSection extends StatelessWidget {
                 textAlign: TextAlign.center,
               ),
               const SizedBox(height: 46),
-              GridView.builder(
-                shrinkWrap: true,
-                physics: const NeverScrollableScrollPhysics(),
-                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: Responsive.isMobile(context)
+              LayoutBuilder(
+                builder: (context, constraints) {
+                  final crossAxisCount = Responsive.isMobile(context)
                       ? 1
-                      : (Responsive.isTablet(context) ? 2 : 4),
-                  childAspectRatio: 1.1,
-                  crossAxisSpacing: 12,
-                  mainAxisSpacing: 12,
-                ),
-                itemCount: certificates.length,
-                itemBuilder: (context, index) {
-                  final cert = certificates[index];
-                  return _buildCertificateCard(context, cert, isArabic, index);
+                      : (Responsive.isTablet(context) ? 2 : 4);
+                  const spacing = 12.0;
+                  final cardWidth = (constraints.maxWidth - (spacing * (crossAxisCount - 1))) / crossAxisCount;
+
+                  return Wrap(
+                    spacing: spacing,
+                    runSpacing: spacing,
+                    children: certificates.asMap().entries.map((entry) {
+                      final index = entry.key;
+                      final cert = entry.value;
+                      return SizedBox(
+                        width: cardWidth,
+                        child: _buildCertificateCard(context, cert, isArabic, index),
+                      );
+                    }).toList(),
+                  );
                 },
               ),
             ],
