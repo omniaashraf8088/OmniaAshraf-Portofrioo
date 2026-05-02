@@ -43,19 +43,22 @@ class ProjectsSection extends StatelessWidget {
                 textAlign: TextAlign.center,
               ),
               const SizedBox(height: 20),
-              GridView.builder(
-                shrinkWrap: true,
-                physics: const NeverScrollableScrollPhysics(),
-                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: Responsive.gridColumns(context),
-                  childAspectRatio: 0.85,
-                  crossAxisSpacing: 16,
-                  mainAxisSpacing: 16,
-                ),
-                itemCount: projects.length,
-                itemBuilder: (context, index) {
-                  final project = projects[index];
-                  return _buildProjectCard(context, project, isArabic);
+              LayoutBuilder(
+                builder: (context, constraints) {
+                  final crossAxisCount = Responsive.gridColumns(context);
+                  const spacing = 16.0;
+                  final cardWidth = (constraints.maxWidth - (spacing * (crossAxisCount - 1))) / crossAxisCount;
+
+                  return Wrap(
+                    spacing: spacing,
+                    runSpacing: spacing,
+                    children: projects.map((project) {
+                      return SizedBox(
+                        width: cardWidth,
+                        child: _buildProjectCard(context, project, isArabic),
+                      );
+                    }).toList(),
+                  );
                 },
               ),
             ],
@@ -71,6 +74,7 @@ class ProjectsSection extends StatelessWidget {
       clipBehavior: Clip.antiAlias,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
+        mainAxisSize: MainAxisSize.min,
         children: [
           AspectRatio(
             aspectRatio: 16 / 9,
@@ -145,25 +149,6 @@ class ProjectsSection extends StatelessWidget {
                                 horizontal: 6, vertical: 8),
                             backgroundColor: Colors.white,
                             foregroundColor: Colors.black,
-                          ),
-                        ),
-                      ),
-                    if (project.githubUrl != null && project.demoUrl != null)
-                      const SizedBox(width: 12),
-                    if (project.demoUrl != null)
-                      Expanded(
-                        child: ElevatedButton.icon(
-                          onPressed: () => _launchUrl(project.demoUrl!),
-                          icon: const Icon(Icons.launch, size: 14),
-                          label: Text(
-                            isArabic
-                                ? AppLocalizationsAr.viewDemo
-                                : AppLocalizationsEn.viewDemo,
-                            style: const TextStyle(fontSize: 11),
-                          ),
-                          style: ElevatedButton.styleFrom(
-                            padding: const EdgeInsets.symmetric(
-                                horizontal: 12, vertical: 8),
                           ),
                         ),
                       ),

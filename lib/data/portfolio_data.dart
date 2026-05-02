@@ -10,9 +10,9 @@ class PortfolioData {
   static const String title = "Flutter Developer";
   static const String titleAr = "مطورة تطبيقات Flutter";
   static const String bio =
-      "Flutter Developer with 3+ years of experience shipping cross-platform apps for startups and enterprises. I focus on clean architecture, smooth UX, and code that scales — from MVP to full production.\n\n• 7+ apps shipped on Android, iOS & Web\n• BLoC, Provider, Riverpod & Clean Architecture\n• Firebase, REST APIs & third-party integrations\n• Pixel-perfect UI with smooth animations\n\nI write maintainable code, communicate clearly, and deliver on schedule.";
+      "Flutter Developer with hands-on experience building scalable cross-platform applications. I focus on clean architecture, smooth user experience, and production-ready code.\n\n• 7+ cross-platform applications (Android, iOS, Web)\n• State management using BLoC, Provider, and Riverpod\n• Experience with Firebase, REST APIs, and third-party integrations\n• Clean, responsive UI with smooth performance\n\nFocused on delivering reliable, maintainable, and scalable applications.";
   static const String bioAr =
-      "مطورة Flutter بخبرة 3+ سنوات في بناء تطبيقات عابرة للمنصات للشركات الناشئة والمؤسسات. أركز على الهندسة النظيفة، تجربة مستخدم سلسة، وكود قابل للتوسع — من النموذج الأولي حتى الإنتاج.\n\n• 7+ تطبيقات على Android وiOS وWeb\n• BLoC, Provider, Riverpod والهندسة النظيفة\n• Firebase و REST APIs وتكاملات جهات خارجية\n• واجهات بدقة بكسل ورسوم متحركة سلسة\n\nأكتب كوداً قابلاً للصيانة، أتواصل بوضوح، وأسلم في الموعد.";
+      "مطورة Flutter بخبرة عملية في بناء تطبيقات عابرة للمنصات قابلة للتوسع. أركز على الهندسة النظيفة (Clean Architecture)، تجربة مستخدم سلسة، وكود جاهز للإنتاج.\n\n• 7+ تطبيقات عابرة للمنصات (Android, iOS, Web)\n• إدارة الحالة باستخدام BLoC و Provider و Riverpod\n• خبرة في التعامل مع Firebase، واجهات برمجة التطبيقات (REST APIs)، وتكاملات جهات خارجية\n• واجهة مستخدم نظيفة ومتجاوبة مع أداء سلس\n\nأركز على تقديم تطبيقات موثوقة، قابلة للصيانة، وقابلة للتوسع.";
   static const String emailUrl = "mailto:omniaashraf8088@gmail.com";
   static const String location = "Giza, 6th of October (Remote Friendly)";
   static const String locationAr = "الجيزة، 6 أكتوبر (متاح للعمل عن بعد)";
