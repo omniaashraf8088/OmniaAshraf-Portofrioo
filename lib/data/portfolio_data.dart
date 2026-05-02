@@ -242,7 +242,7 @@ class PortfolioData {
           date: DateTime(2024, 11, 1),
           readTime: "8 min read",
           readTimeAr: "8 دقائق قراءة",
-          url: "https://blog.example.com/scalable-flutter",
+          url: "https://medium.com/@omnia52481019",
         ),
         BlogPostModel(
           id: 2,
@@ -255,7 +255,7 @@ class PortfolioData {
           date: DateTime(2024, 10, 15),
           readTime: "6 min read",
           readTimeAr: "6 دقائق قراءة",
-          url: "https://blog.example.com/flutter-performance",
+          url: "https://medium.com/@omnia52481019",
         ),
         BlogPostModel(
           id: 3,
@@ -268,7 +268,7 @@ class PortfolioData {
           date: DateTime(2024, 9, 20),
           readTime: "10 min read",
           readTimeAr: "10 دقائق قراءة",
-          url: "https://blog.example.com/state-management",
+          url: "https://medium.com/@omnia52481019",
         ),
         BlogPostModel(
           id: 4,
@@ -281,7 +281,7 @@ class PortfolioData {
           date: DateTime(2024, 8, 10),
           readTime: "12 min read",
           readTimeAr: "12 دقيقة قراءة",
-          url: "https://blog.example.com/flutter-animations",
+          url: "https://medium.com/@omnia52481019",
         ),
       ];
 }
