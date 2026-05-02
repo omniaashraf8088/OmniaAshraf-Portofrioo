@@ -111,8 +111,6 @@ class ProjectsSection extends StatelessWidget {
                 Text(
                   isArabic ? project.descriptionAr : project.description,
                   style: Theme.of(context).textTheme.bodySmall,
-                  maxLines: 2,
-                  overflow: TextOverflow.ellipsis,
                 ),
                 const SizedBox(height: 10),
                 Wrap(
