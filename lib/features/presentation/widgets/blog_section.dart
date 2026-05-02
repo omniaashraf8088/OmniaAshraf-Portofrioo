@@ -44,19 +44,22 @@ class BlogSection extends StatelessWidget {
                 textAlign: TextAlign.center,
               ),
               const SizedBox(height: 48),
-              GridView.builder(
-                shrinkWrap: true,
-                physics: const NeverScrollableScrollPhysics(),
-                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: Responsive.isMobile(context) ? 1 : 2,
-                  childAspectRatio: Responsive.isMobile(context) ? 1.2 : 1.5,
-                  crossAxisSpacing: 16,
-                  mainAxisSpacing: 16,
-                ),
-                itemCount: blogPosts.length,
-                itemBuilder: (context, index) {
-                  final post = blogPosts[index];
-                  return _buildBlogCard(context, post, isArabic);
+              LayoutBuilder(
+                builder: (context, constraints) {
+                  final crossAxisCount = Responsive.isMobile(context) ? 1 : 2;
+                  const spacing = 16.0;
+                  final cardWidth = (constraints.maxWidth - (spacing * (crossAxisCount - 1))) / crossAxisCount;
+
+                  return Wrap(
+                    spacing: spacing,
+                    runSpacing: spacing,
+                    children: blogPosts.map((post) {
+                      return SizedBox(
+                        width: cardWidth,
+                        child: _buildBlogCard(context, post, isArabic),
+                      );
+                    }).toList(),
+                  );
                 },
               ),
             ],
@@ -76,6 +79,7 @@ class BlogSection extends StatelessWidget {
           padding: const EdgeInsets.all(20),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisSize: MainAxisSize.min,
             children: [
               Text(
                 isArabic ? post.titleAr : post.title,
@@ -84,13 +88,11 @@ class BlogSection extends StatelessWidget {
                 overflow: TextOverflow.ellipsis,
               ),
               const SizedBox(height: 12),
-              Expanded(
-                child: Text(
-                  isArabic ? post.summaryAr : post.summary,
-                  style: Theme.of(context).textTheme.bodyMedium,
-                  maxLines: 3,
-                  overflow: TextOverflow.ellipsis,
-                ),
+              Text(
+                isArabic ? post.summaryAr : post.summary,
+                style: Theme.of(context).textTheme.bodyMedium,
+                maxLines: 3,
+                overflow: TextOverflow.ellipsis,
               ),
               const SizedBox(height: 16),
               Row(
