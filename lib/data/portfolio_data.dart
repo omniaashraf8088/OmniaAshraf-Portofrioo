@@ -256,7 +256,7 @@ class PortfolioData {
           date: DateTime(2024, 10, 15),
           readTime: "6 min read",
           readTimeAr: "6 دقائق قراءة",
-          url: "https://medium.com/@omnia52481019",
+          url: "https://medium.com/p/5ee79489d345",
         ),
         BlogPostModel(
           id: 3,
