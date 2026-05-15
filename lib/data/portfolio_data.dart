@@ -20,7 +20,7 @@ class PortfolioData {
   static const String logoImagePath = "assets/images/logo.jpg";
   static const String bioImagePath = "assets/images/bio.jpg";
   static const String cvUrl =
-      "https://drive.google.com/file/d/1tN9D435XUGClsKNEVZPDyqyygJyq9zMo/view?usp=sharing";
+      "https://drive.google.com/file/d/1htyHY669h6oFGSZrXNatwWmdWpunmySF/view?usp=sharing";
 
   // Social Links
   static const String githubUrl = "https://github.com/omniaashraf8088";
