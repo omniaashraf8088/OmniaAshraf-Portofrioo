@@ -31,7 +31,7 @@ class PortfolioData {
   static const String whatsappUrl = "https://wa.me/message/KBKG2WZ5ZQNRO1";
   static const String instagramUrl = "https://www.instagram.com/omnia_flutter/";
   static const String portfolioUrl =
-      "https://yourportfolio.com"; // Will be updated after deployment
+      "https://omniaashraf8088.github.io/OmniaAshraf-Portofrioo/";
 
   // Skills
   static List<SkillModel> get skills => [
@@ -269,7 +269,7 @@ class PortfolioData {
           date: DateTime(2024, 9, 20),
           readTime: "10 min read",
           readTimeAr: "10 دقائق قراءة",
-          url: "https://medium.com/@omnia52481019",
+          url: "https://medium.com/@omnia52481019/state-management-in-flutter-20ee04cf950d",
         ),
         BlogPostModel(
           id: 4,
@@ -282,7 +282,7 @@ class PortfolioData {
           date: DateTime(2024, 8, 10),
           readTime: "12 min read",
           readTimeAr: "12 دقيقة قراءة",
-          url: "https://medium.com/@omnia52481019",
+          url: "https://medium.com/@omnia52481019/flutter-animations-masterclass-from-basics-to-complex-sequences-f53375d33867",
         ),
       ];
 }

@@ -139,7 +139,7 @@ class AboutSection extends StatelessWidget {
     );
   }
 
-  Widget _buildContactInfo(BuildContext context, IconData icon, String text) {
+  Widget _buildContactInfo(BuildContext context, FaIconData icon, String text) {
     return Row(
       mainAxisSize: MainAxisSize.min,
       children: [

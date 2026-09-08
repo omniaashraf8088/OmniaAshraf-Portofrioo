@@ -14,7 +14,7 @@ dependencies:
   provider: ^6.1.1
 
   # Icons
-  font_awesome_flutter: ^10.6.0
+  font_awesome_flutter: ^11.0.0
 
   # URL Launcher (for opening links)
   url_launcher: ^6.2.2
@@ -61,7 +61,6 @@ flutter:
           weight: 700
         - asset: assets/fonts/Playfair_Display/static/PlayfairDisplay-Italic.ttf
           style: italic
-       
-   
+
 flutter_intl:
   enabled: true
