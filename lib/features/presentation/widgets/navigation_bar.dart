@@ -163,88 +163,21 @@ class CustomNavigationBar extends StatelessWidget {
   }
 
   void _showLogoDialog(BuildContext context) {
-    showDialog(
+    showGeneralDialog(
       context: context,
-      barrierColor: Colors.black.withValues(alpha: 0.75),
-      builder: (context) => Dialog(
-        backgroundColor: Colors.transparent,
-        elevation: 0,
-        child: GestureDetector(
-          onTap: () => Navigator.of(context).pop(),
-          child: Container(
-            constraints: const BoxConstraints(
-              maxWidth: 400,
-              maxHeight: 400,
-            ),
-            decoration: BoxDecoration(
-              shape: BoxShape.circle,
-              boxShadow: [
-                BoxShadow(
-                  color: const Color(0xFF00E5FF).withValues(alpha: 0.5),
-                  blurRadius: 40,
-                  spreadRadius: 10,
-                ),
-                BoxShadow(
-                  color: const Color(0xFF1565C0).withValues(alpha: 0.4),
-                  blurRadius: 60,
-                  spreadRadius: 5,
-                ),
-              ],
-            ),
-            child: Stack(
-              alignment: Alignment.center,
-              children: [
-                // Logo image
-                ClipOval(
-                  child: Image.asset(
-                    'assets/images/logo.jpg',
-                    width: 360,
-                    height: 360,
-                    fit: BoxFit.cover,
-                    errorBuilder: (context, error, stackTrace) {
-                      return Container(
-                        width: 360,
-                        height: 360,
-                        color: const Color(0xFF0D1B2A),
-                        child: const Icon(
-                          Icons.person,
-                          color: Color(0xFF00E5FF),
-                          size: 80,
-                        ),
-                      );
-                    },
-                  ),
-                ),
-                // Close button
-                Positioned(
-                  top: 8,
-                  right: 8,
-                  child: GestureDetector(
-                    onTap: () => Navigator.of(context).pop(),
-                    child: Container(
-                      width: 32,
-                      height: 32,
-                      decoration: BoxDecoration(
-                        color: Colors.black.withValues(alpha: 0.6),
-                        shape: BoxShape.circle,
-                        border: Border.all(
-                          color: const Color(0xFF00E5FF).withValues(alpha: 0.6),
-                          width: 1,
-                        ),
-                      ),
-                      child: const Icon(
-                        Icons.close,
-                        color: Colors.white,
-                        size: 18,
-                      ),
-                    ),
-                  ),
-                ),
-              ],
-            ),
-          ),
-        ),
-      ),
+      barrierDismissible: true,
+      barrierLabel: 'Logo',
+      barrierColor: Colors.black.withValues(alpha: 0.0),
+      transitionDuration: const Duration(milliseconds: 600),
+      pageBuilder: (context, animation, secondaryAnimation) {
+        return const _LogoDialogContent();
+      },
+      transitionBuilder: (context, animation, secondaryAnimation, child) {
+        return FadeTransition(
+          opacity: CurvedAnimation(parent: animation, curve: Curves.easeOut),
+          child: child,
+        );
+      },
     );
   }
 
@@ -265,6 +198,197 @@ class CustomNavigationBar extends StatelessWidget {
             onNavigate(index);
           },
         ),
+      ),
+    );
+  }
+}
+
+// ── Animated Logo Dialog ─────────────────────────────────────────
+class _LogoDialogContent extends StatefulWidget {
+  const _LogoDialogContent();
+
+  @override
+  State<_LogoDialogContent> createState() => _LogoDialogContentState();
+}
+
+class _LogoDialogContentState extends State<_LogoDialogContent>
+    with TickerProviderStateMixin {
+  late final AnimationController _scaleCtrl;
+  late final AnimationController _glowCtrl;
+  late final AnimationController _bgCtrl;
+
+  late final Animation<double> _scaleAnim;
+  late final Animation<double> _glowAnim;
+  late final Animation<double> _bgAnim;
+
+  @override
+  void initState() {
+    super.initState();
+
+    // Background fade
+    _bgCtrl = AnimationController(
+      vsync: this,
+      duration: const Duration(milliseconds: 400),
+    );
+    _bgAnim = CurvedAnimation(parent: _bgCtrl, curve: Curves.easeOut);
+
+    // Star pop scale — elastic overshoot
+    _scaleCtrl = AnimationController(
+      vsync: this,
+      duration: const Duration(milliseconds: 700),
+    );
+    _scaleAnim = CurvedAnimation(
+      parent: _scaleCtrl,
+      curve: Curves.elasticOut,
+    );
+
+    // Continuous neon glow pulse
+    _glowCtrl = AnimationController(
+      vsync: this,
+      duration: const Duration(milliseconds: 1800),
+    )..repeat(reverse: true);
+    _glowAnim = Tween<double>(begin: 0.5, end: 1.0).animate(
+      CurvedAnimation(parent: _glowCtrl, curve: Curves.easeInOut),
+    );
+
+    // Kick off animations in sequence
+    _bgCtrl.forward();
+    Future.delayed(const Duration(milliseconds: 50), () {
+      if (mounted) _scaleCtrl.forward();
+    });
+  }
+
+  @override
+  void dispose() {
+    _scaleCtrl.dispose();
+    _glowCtrl.dispose();
+    _bgCtrl.dispose();
+    super.dispose();
+  }
+
+  void _close() {
+    _scaleCtrl.reverse();
+    _bgCtrl.reverse();
+    Future.delayed(const Duration(milliseconds: 350), () {
+      if (mounted) Navigator.of(context).pop();
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+      onTap: _close,
+      child: AnimatedBuilder(
+        animation: Listenable.merge([_bgAnim, _scaleAnim, _glowAnim]),
+        builder: (context, child) {
+          return Container(
+            color: Colors.black.withValues(alpha: 0.82 * _bgAnim.value),
+            child: Center(
+              child: ScaleTransition(
+                scale: _scaleAnim,
+                child: GestureDetector(
+                  onTap: () {}, // prevent closing when tapping logo
+                  child: Stack(
+                    alignment: Alignment.center,
+                    children: [
+                      // ── Outer glow rays (star burst) ──
+                      Container(
+                        width: 560 + (20 * _glowAnim.value),
+                        height: 560 + (20 * _glowAnim.value),
+                        decoration: BoxDecoration(
+                          shape: BoxShape.circle,
+                          boxShadow: [
+                            BoxShadow(
+                              color: const Color(0xFF00E5FF)
+                                  .withValues(alpha: 0.55 * _glowAnim.value),
+                              blurRadius: 80,
+                              spreadRadius: 20,
+                            ),
+                            BoxShadow(
+                              color: const Color(0xFF1565C0)
+                                  .withValues(alpha: 0.4 * _glowAnim.value),
+                              blurRadius: 120,
+                              spreadRadius: 10,
+                            ),
+                          ],
+                        ),
+                      ),
+
+                      // ── Logo image ──
+                      Container(
+                        width: 520,
+                        height: 520,
+                        decoration: BoxDecoration(
+                          shape: BoxShape.circle,
+                          border: Border.all(
+                            color: Color.lerp(
+                              const Color(0xFF00E5FF),
+                              const Color(0xFF80DFFF),
+                              _glowAnim.value,
+                            )!,
+                            width: 3.5,
+                          ),
+                        ),
+                        child: ClipOval(
+                          child: Image.asset(
+                            'assets/images/logo.jpg',
+                            width: 520,
+                            height: 520,
+                            fit: BoxFit.cover,
+                            errorBuilder: (context, error, stackTrace) {
+                              return Container(
+                                color: const Color(0xFF0D1B2A),
+                                child: const Icon(
+                                  Icons.person,
+                                  color: Color(0xFF00E5FF),
+                                  size: 100,
+                                ),
+                              );
+                            },
+                          ),
+                        ),
+                      ),
+
+                      // ── Close button ──
+                      Positioned(
+                        top: 10,
+                        right: 10,
+                        child: GestureDetector(
+                          onTap: _close,
+                          child: Container(
+                            width: 38,
+                            height: 38,
+                            decoration: BoxDecoration(
+                              color: Colors.black.withValues(alpha: 0.7),
+                              shape: BoxShape.circle,
+                              border: Border.all(
+                                color: const Color(0xFF00E5FF)
+                                    .withValues(alpha: 0.8),
+                                width: 1.5,
+                              ),
+                              boxShadow: [
+                                BoxShadow(
+                                  color: const Color(0xFF00E5FF)
+                                      .withValues(alpha: 0.4),
+                                  blurRadius: 12,
+                                ),
+                              ],
+                            ),
+                            child: const Icon(
+                              Icons.close_rounded,
+                              color: Colors.white,
+                              size: 20,
+                            ),
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            ),
+          );
+        },
       ),
     );
   }
