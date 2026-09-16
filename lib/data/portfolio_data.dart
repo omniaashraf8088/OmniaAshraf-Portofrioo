@@ -30,6 +30,8 @@ class PortfolioData {
       "https://www.facebook.com/share/16drFPjB7G/?mibextid=wwXIfr";
   static const String whatsappUrl = "https://wa.me/message/KBKG2WZ5ZQNRO1";
   static const String instagramUrl = "https://www.instagram.com/omnia_flutter/";
+  static const String upworkUrl = "https://www.upwork.com/freelancers/~01a7a6ef452160e83c?mp_source=share";
+  static const String mediumUrl = "https://medium.com/@omnia52481019";
   static const String portfolioUrl =
       "https://omniaashraf8088.github.io/OmniaAshraf-Portofrioo/";
 
