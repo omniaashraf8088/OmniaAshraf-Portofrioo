@@ -41,26 +41,29 @@ class CustomNavigationBar extends StatelessWidget {
       elevation: 2,
       title: Row(
         children: [
-          Container(
-            width: 40,
-            height: 40,
-            decoration: BoxDecoration(
-              shape: BoxShape.circle,
-              border: Border.all(
-                color: Theme.of(context).colorScheme.primary,
-                width: 2,
+          GestureDetector(
+            onTap: () => _showLogoDialog(context),
+            child: Container(
+              width: 40,
+              height: 40,
+              decoration: BoxDecoration(
+                shape: BoxShape.circle,
+                border: Border.all(
+                  color: Theme.of(context).colorScheme.primary,
+                  width: 2,
+                ),
               ),
-            ),
-            child: ClipOval(
-              child: Image.asset(
-                'assets/images/logo.jpg',
-                fit: BoxFit.cover,
-                errorBuilder: (context, error, stackTrace) {
-                  return Icon(
-                    Icons.person,
-                    color: Theme.of(context).colorScheme.primary,
-                  );
-                },
+              child: ClipOval(
+                child: Image.asset(
+                  'assets/images/logo.jpg',
+                  fit: BoxFit.cover,
+                  errorBuilder: (context, error, stackTrace) {
+                    return Icon(
+                      Icons.person,
+                      color: Theme.of(context).colorScheme.primary,
+                    );
+                  },
+                ),
               ),
             ),
           ),
@@ -155,6 +158,92 @@ class CustomNavigationBar extends StatelessWidget {
               onPressed: () => _showMobileMenu(context, navItems, onNavigate),
             ),
         ],
+      ),
+    );
+  }
+
+  void _showLogoDialog(BuildContext context) {
+    showDialog(
+      context: context,
+      barrierColor: Colors.black.withValues(alpha: 0.75),
+      builder: (context) => Dialog(
+        backgroundColor: Colors.transparent,
+        elevation: 0,
+        child: GestureDetector(
+          onTap: () => Navigator.of(context).pop(),
+          child: Container(
+            constraints: const BoxConstraints(
+              maxWidth: 400,
+              maxHeight: 400,
+            ),
+            decoration: BoxDecoration(
+              shape: BoxShape.circle,
+              boxShadow: [
+                BoxShadow(
+                  color: const Color(0xFF00E5FF).withValues(alpha: 0.5),
+                  blurRadius: 40,
+                  spreadRadius: 10,
+                ),
+                BoxShadow(
+                  color: const Color(0xFF1565C0).withValues(alpha: 0.4),
+                  blurRadius: 60,
+                  spreadRadius: 5,
+                ),
+              ],
+            ),
+            child: Stack(
+              alignment: Alignment.center,
+              children: [
+                // Logo image
+                ClipOval(
+                  child: Image.asset(
+                    'assets/images/logo.jpg',
+                    width: 360,
+                    height: 360,
+                    fit: BoxFit.cover,
+                    errorBuilder: (context, error, stackTrace) {
+                      return Container(
+                        width: 360,
+                        height: 360,
+                        color: const Color(0xFF0D1B2A),
+                        child: const Icon(
+                          Icons.person,
+                          color: Color(0xFF00E5FF),
+                          size: 80,
+                        ),
+                      );
+                    },
+                  ),
+                ),
+                // Close button
+                Positioned(
+                  top: 8,
+                  right: 8,
+                  child: GestureDetector(
+                    onTap: () => Navigator.of(context).pop(),
+                    child: Container(
+                      width: 32,
+                      height: 32,
+                      decoration: BoxDecoration(
+                        color: Colors.black.withValues(alpha: 0.6),
+                        shape: BoxShape.circle,
+                        border: Border.all(
+                          color: const Color(0xFF00E5FF).withValues(alpha: 0.6),
+                          width: 1,
+                        ),
+                      ),
+                      child: const Icon(
+                        Icons.close,
+                        color: Colors.white,
+                        size: 18,
+                      ),
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ),
       ),
     );
   }
