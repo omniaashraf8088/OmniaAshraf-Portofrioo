@@ -234,6 +234,34 @@ class PortfolioData {
   // Blog Posts
   static List<BlogPostModel> get blogPosts => [
         BlogPostModel(
+          id: 6,
+          title: "Smart Push Notifications in Flutter",
+          titleAr: "نظام الإشعارات الذكية في Flutter للإنتاج",
+          summary:
+              "The complete production guide to building a resilient notification pipeline with FCM, background isolate handlers, deep linking, and real-time engagement.",
+          summaryAr:
+              "دليل الإنتاج الشامل لبناء بنية إشعارات قوية باستخدام FCM، معالجة الخلفية المستقلة، التوجيه الذكي للشاشات، وزيادة تفاعل المستخدمين.",
+          date: DateTime(2026, 10, 28),
+          readTime: "8 min read",
+          readTimeAr: "8 دقائق قراءة",
+          url:
+              "https://medium.com/@omnia52481019/smart-push-notifications-in-flutter-the-complete-production-architecture-guide-c9828dd15ac8",
+        ),
+        BlogPostModel(
+          id: 5,
+          title: "Clean Architecture in Flutter",
+          titleAr: "الهندسة النظيفة (Clean Architecture) في Flutter",
+          summary:
+              "A practical guide to building modular, maintainable, and testable Flutter apps with Clean Architecture and real-world examples.",
+          summaryAr:
+              "دليل عملي لبناء تطبيقات Flutter قابلة للتوسع والصيانة والاختبار باستخدام مبادئ Clean Architecture وأمثلة حقيقية.",
+          date: DateTime(2026, 10, 28),
+          readTime: "7 min read",
+          readTimeAr: "7 دقائق قراءة",
+          url:
+              "https://medium.com/@omnia52481019/clean-architecture-in-flutter-a-practical-guide-with-real-examples-d07ca135d7b0",
+        ),
+        BlogPostModel(
           id: 1,
           title: "Building Scalable Flutter Apps",
           titleAr: "بناء تطبيقات Flutter قابلة للتطوير",
