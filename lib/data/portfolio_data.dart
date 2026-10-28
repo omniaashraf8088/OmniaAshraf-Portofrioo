@@ -234,6 +234,20 @@ class PortfolioData {
   // Blog Posts
   static List<BlogPostModel> get blogPosts => [
         BlogPostModel(
+          id: 7,
+          title: "Production-Ready REST API Integration in Flutter",
+          titleAr: "هندسة الاتصال بالـ APIs في Flutter للإنتاج",
+          summary:
+              "How to build resilient network layers using Dio, Interceptors, Repository Pattern, and graceful offline fallback.",
+          summaryAr:
+              "دليل شامل لبناء طبقة شبكات متينة باستخدام Dio و Interceptors ونمط المستودع والتخزين المؤقت في تطبيقات Flutter.",
+          date: DateTime(2026, 10, 28),
+          readTime: "7 min read",
+          readTimeAr: "7 دقائق قراءة",
+          url:
+              "https://medium.com/@omnia52481019/building-a-production-ready-networking-layer-in-flutter-requires-thoughtful-architecture-secure-3f35c76ebd6d",
+        ),
+        BlogPostModel(
           id: 6,
           title: "Smart Push Notifications in Flutter",
           titleAr: "نظام الإشعارات الذكية في Flutter للإنتاج",
