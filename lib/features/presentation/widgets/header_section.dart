@@ -173,6 +173,8 @@ class HeaderSection extends StatelessWidget {
         _buildSocialImageIcon(
             context, 'assets/icons/instgram.jpg', PortfolioData.instagramUrl),
         _buildSocialImageIcon(
+            context, 'assets/icons/youtube.png', PortfolioData.youtubeUrl),
+        _buildSocialImageIcon(
             context, 'assets/icons/upwork_icon.jpg', PortfolioData.upworkUrl),
         _buildSocialImageIcon(
             context, 'assets/icons/medium_icon.jpg', PortfolioData.mediumUrl),
