@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://omniaashraf8088.github.io/OmniaAshraf-Portofrioo/sitemap.xml
