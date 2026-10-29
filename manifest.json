@@ -1,11 +1,11 @@
 {
-    "name": "Omnya Ashraf - Flutter Developer",
-    "short_name": "Omnya Portfolio",
+    "name": "Omnia Ashraf - Senior Flutter Developer",
+    "short_name": "Omnia Ashraf",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",
     "theme_color": "#0175C2",
-    "description": "Professional portfolio showcasing Flutter mobile development projects and certifications.",
+    "description": "Professional portfolio showcasing Omnia Ashraf's Flutter mobile development projects, Clean Architecture, and certifications.",
     "orientation": "portrait-primary",
     "prefer_related_applications": false,
     "icons": [
