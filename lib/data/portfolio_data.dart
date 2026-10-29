@@ -29,8 +29,7 @@ class PortfolioData {
   static const String facebookUrl =
       "https://www.facebook.com/share/16drFPjB7G/?mibextid=wwXIfr";
   static const String whatsappUrl = "https://wa.me/message/KBKG2WZ5ZQNRO1";
-  static const String instagramUrl =
-      "https://www.instagram.com/software__mobile_app_developer/";
+  static const String instagramUrl = "https://www.instagram.com/omnia_flutter/";
   static const String youtubeUrl =
       "https://www.youtube.com/@omniaashraf-handcode";
   static const String upworkUrl =
